@@ -1,27 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Data.Models
+namespace Infrastructure.Business.Domains.Dto
 {
-    public class ProjectEntity
+    public class CreateProjectRequest
     {
-        public int Id { get; set; }
+        [Required]
         public string ProjectName { get; set; }
-        public string? ImageUrl { get; set; }
+
+        [Required]
         public string Description { get; set; }
+
+        public string? ImageUrl { get; set; }
+
+        [Required]
         public DateTime StartDate { get; set; }
+
+        [Required]
         public DateTime EndDate { get; set; }
+
+        [Required]
         public int Budget { get; set; }
 
-        // FK till användaren som skapat projektet
+        [Required]
         public int ProjectOwnerId { get; set; }
-        public UserEntity ProjectOwner { get; set; }
 
-        // FK till klienten
+        [Required]
         public int ClientId { get; set; }
-        public ClientEntity Client { get; set; }
     }
 }
