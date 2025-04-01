@@ -1,4 +1,8 @@
+using Infrastructure.Business.Services;
+using Infrastructure.Business.Services.Interfaces;
 using Infrastructure.Data.Context;
+using Infrastructure.Data.Repository;
+using Infrastructure.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -16,6 +20,16 @@ builder.Services.AddSwaggerGen(options =>
         Description = "CRM/Projektplattform",
     });
 });
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+
+
+
+
 
 var app = builder.Build();
 
