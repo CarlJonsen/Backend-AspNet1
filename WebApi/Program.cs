@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "My API",
         Version = "v1",
-        Description = "CRM/Projektplattform - DENNA SKA BORT INNAN PRODUKTION: min-superhemliga-nyckel-typ-123abc456"
+        Description = "CRM/Projektplattform - DENNA SKA BORT INNAN PRODUKTION apikey: A9f4XZ!73sKD91hf@ksl02zMB_82hdkZ"
     });
 
     options.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
