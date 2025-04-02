@@ -1,10 +1,12 @@
 ﻿using Infrastructure.Business.Domains.Dto;
 using Infrastructure.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [Route("api/projects")]
     [ApiController]
     public class ProjectController : ControllerBase
