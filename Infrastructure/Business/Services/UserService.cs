@@ -34,5 +34,16 @@ namespace Infrastructure.Business.Services
 
             return await _userRepository.AddAsync(user);
         }
+        public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
+        {
+            var users = await _userRepository.GetAllAsync();
+
+            return users.Select(u => new UserDto
+            {
+                Id = u.Id,
+                FirstName = u.Firstname,
+                LastName = u.Lastname
+            });
+        }
     }
 }

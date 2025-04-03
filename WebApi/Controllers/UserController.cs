@@ -44,5 +44,12 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            return Ok(users);
+        }
     }
 }
