@@ -5,6 +5,7 @@ using Infrastructure.Data.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,9 +52,34 @@ namespace Infrastructure.Business.Services
             return await _projectRepository.AddAsync(project);
         }
 
-        public async Task<IEnumerable<ProjectEntity>> GetAllProjectsAsync()
+        public async Task<IEnumerable<ProjectDto>> GetAllProjectsAsync()
         {
-            return await _projectRepository.GetAllAsync();
+            var projects = await _projectRepository.GetAllAsync(
+                orderByDescending: false,
+                sortBy: null, 
+                filterBy: null,
+                includes: new Expression<Func<ProjectEntity, object>>[]
+                {
+                    p => p.Client,
+                    p => p.ProjectOwner
+                });
+
+            var result = projects.Select(p => new ProjectDto
+            {
+                Id = p.Id,
+                ProjectName = p.ProjectName,
+                Description = p.Description,
+                ImageUrl = p.ImageUrl,
+                StartDate = p.StartDate,
+                EndDate = p.EndDate,
+                Budget = p.Budget,
+                ClientName = p.Client?.ClientName ?? "Unknown",
+                ProjectOwnerName = p.ProjectOwner != null
+                    ? $"{p.ProjectOwner.Firstname} {p.ProjectOwner.Lastname}"
+                    : "Unknown"
+            });
+
+            return result;
         }
     }
 }

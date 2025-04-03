@@ -11,6 +11,6 @@ namespace Infrastructure.Business.Services.Interfaces
     public interface IProjectService
     {
         Task<bool> CreateProjectAsync(CreateProjectRequest request);
-        Task<IEnumerable<ProjectEntity>> GetAllProjectsAsync();
+        Task<IEnumerable<ProjectDto>> GetAllProjectsAsync();
     }
 }
