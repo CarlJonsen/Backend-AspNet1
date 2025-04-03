@@ -9,6 +9,8 @@ namespace Infrastructure.Business.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<bool> CreateUserAsync(CreateUserRequest request);  
+        Task<bool> CreateUserAsync(CreateUserRequest request);
+
+        Task<IEnumerable<UserDto>> GetAllUsersAsync();
     }
 }
