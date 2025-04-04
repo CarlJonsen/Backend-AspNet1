@@ -73,10 +73,14 @@ namespace Infrastructure.Business.Services
                 StartDate = p.StartDate,
                 EndDate = p.EndDate,
                 Budget = p.Budget,
+
+                ClientId = p.ClientId, // 👈 Lägger till detta
                 ClientName = p.Client?.ClientName ?? "Unknown",
+
+                ProjectOwnerId = p.ProjectOwnerId, // 👈 Lägger till detta
                 ProjectOwnerName = p.ProjectOwner != null
-                    ? $"{p.ProjectOwner.Firstname} {p.ProjectOwner.Lastname}"
-                    : "Unknown"
+                ? $"{p.ProjectOwner.Firstname} {p.ProjectOwner.Lastname}"
+                : "Unknown"
             });
 
             return result;
