@@ -85,5 +85,28 @@ namespace Infrastructure.Business.Services
 
             return result;
         }
+        public async Task<bool> UpdateProjectAsync(int id, UpdateProjectRequest request)
+        {
+            var project = await _projectRepository.GetAsync(p => p.Id == id);
+
+            if (project == null)
+                return false;
+
+            project.ProjectName = request.ProjectName;
+            project.Description = request.Description;
+            project.ImageUrl = request.ImageUrl;
+            project.StartDate = request.StartDate;
+            project.EndDate = request.EndDate;
+            project.Budget = request.Budget;
+            project.ClientId = request.ClientId;
+            project.ProjectOwnerId = request.ProjectOwnerId;
+
+            return await _projectRepository.UpdateAsync(project); // 👈 returnerar true/false
+        }
+
+        public async Task<bool> DeleteProjectAsync(int id)
+        {
+            return await _projectRepository.DeleteAsync(p => p.Id == id);
+        }
     }
 }
