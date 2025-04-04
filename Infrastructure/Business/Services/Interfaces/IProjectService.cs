@@ -12,5 +12,7 @@ namespace Infrastructure.Business.Services.Interfaces
     {
         Task<bool> CreateProjectAsync(CreateProjectRequest request);
         Task<IEnumerable<ProjectDto>> GetAllProjectsAsync();
+        Task<bool> UpdateProjectAsync(int id, UpdateProjectRequest request);
+        Task<bool> DeleteProjectAsync(int id);
     }
 }

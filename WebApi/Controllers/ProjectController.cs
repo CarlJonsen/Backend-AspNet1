@@ -44,5 +44,27 @@ namespace WebApi.Controllers
             var projects = await _projectService.GetAllProjectsAsync();
             return Ok(projects);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProject(int id, [FromBody] UpdateProjectRequest request)
+        {
+            var success = await _projectService.UpdateProjectAsync(id, request);
+
+            if (success)
+                return Ok(new { message = "Projekt uppdaterat!" });
+
+            return BadRequest(new { message = "Kunde inte uppdatera projektet." });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProject(int id)
+        {
+            var success = await _projectService.DeleteProjectAsync(id);
+
+            if (success)
+                return Ok(new { message = "Projektet har tagits bort." });
+
+            return NotFound(new { message = "Projektet hittades inte eller kunde inte tas bort." });
+        }
     }
 }
