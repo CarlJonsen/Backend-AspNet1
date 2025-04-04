@@ -18,8 +18,9 @@ namespace Infrastructure.Business.Domains.Dto
         public DateTime EndDate { get; set; }
 
         public int Budget { get; set; }
-
+        public int ClientId { get; set; }
         public string ClientName { get; set; } = null!;
+        public int ProjectOwnerId { get; set; }
         public string ProjectOwnerName { get; set; } = null!;
         public bool IsCompleted => EndDate < DateTime.Now;
     }
