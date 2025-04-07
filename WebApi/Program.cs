@@ -89,6 +89,11 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddSingleton(x => new BlobService(
+    builder.Configuration["Azure:BlobConnectionString"],
+    builder.Configuration["Azure:BlobContainerName"]
+));
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
