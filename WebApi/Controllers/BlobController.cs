@@ -1,9 +1,11 @@
 ﻿using Infrastructure.Business.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
+    [Authorize]
     [Route("api/blob")]
     [ApiController]
     public class BlobController : ControllerBase
