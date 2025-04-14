@@ -110,5 +110,34 @@ namespace Infrastructure.Business.Services
         {
             return await _projectRepository.DeleteAsync(p => p.Id == id);
         }
+
+        public async Task<ProjectDto?> GetProjectByIdAsync(int id)
+        {
+            var project = await _projectRepository.GetAsync(
+                p => p.Id == id,
+                p => p.Client,
+                p => p.ProjectOwner
+            );
+
+            if (project == null)
+                return null;
+
+            return new ProjectDto
+            {
+                Id = project.Id,
+                ProjectName = project.ProjectName,
+                Description = project.Description,
+                ImageUrl = project.ImageUrl,
+                StartDate = project.StartDate,
+                EndDate = project.EndDate,
+                Budget = project.Budget,
+                ClientId = project.ClientId,
+                ClientName = project.Client?.ClientName ?? "Unknown",
+                ProjectOwnerId = project.ProjectOwnerId,
+                ProjectOwnerName = project.ProjectOwner != null
+                    ? $"{project.ProjectOwner.Firstname} {project.ProjectOwner.Lastname}"
+                    : "Unknown"
+            };
+        }
     }
 }

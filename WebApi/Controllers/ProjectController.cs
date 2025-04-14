@@ -66,5 +66,16 @@ namespace WebApi.Controllers
 
             return NotFound(new { message = "Projektet hittades inte eller kunde inte tas bort." });
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProjectById(int id)
+        {
+            var project = await _projectService.GetProjectByIdAsync(id);
+
+            if (project == null)
+                return NotFound(new { message = "Projektet hittades inte." });
+
+            return Ok(project);
+        }
     }
 }

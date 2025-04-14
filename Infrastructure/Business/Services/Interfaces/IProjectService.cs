@@ -14,5 +14,6 @@ namespace Infrastructure.Business.Services.Interfaces
         Task<IEnumerable<ProjectDto>> GetAllProjectsAsync(string sortByDaysLeft);
         Task<bool> UpdateProjectAsync(int id, UpdateProjectRequest request);
         Task<bool> DeleteProjectAsync(int id);
+        Task<ProjectDto?> GetProjectByIdAsync(int id);
     }
 }
