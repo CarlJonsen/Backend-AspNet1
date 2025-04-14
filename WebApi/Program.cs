@@ -84,7 +84,8 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins("http://localhost:5173",
-                "https://ashy-glacier-0801c0603.6.azurestaticapps.net"
+                "https://ashy-glacier-0801c0603.6.azurestaticapps.net",
+                "https://carljonsen.com"
                 )
                   .AllowAnyHeader()
                   .AllowAnyMethod();
