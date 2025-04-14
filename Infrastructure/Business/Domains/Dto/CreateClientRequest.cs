@@ -19,7 +19,6 @@ namespace Infrastructure.Business.Domains.Dto
         [Required]
         public string Phone { get; set; }
 
-        [Required]
         public string BillingAddress { get; set; }
 
         public string? BillingReference { get; set; }
