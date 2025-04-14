@@ -39,9 +39,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetAllProjects()
+        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetAllProjects([FromQuery] string sortByDaysLeft = "asc")
         {
-            var projects = await _projectService.GetAllProjectsAsync();
+            var projects = await _projectService.GetAllProjectsAsync(sortByDaysLeft);
             return Ok(projects);
         }
 

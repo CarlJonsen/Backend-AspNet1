@@ -52,16 +52,18 @@ namespace Infrastructure.Business.Services
             return await _projectRepository.AddAsync(project);
         }
 
-        public async Task<IEnumerable<ProjectDto>> GetAllProjectsAsync()
+        public async Task<IEnumerable<ProjectDto>> GetAllProjectsAsync(string sortByDaysLeft = "asc")
         {
+            bool orderByDescending = sortByDaysLeft.ToLower() == "desc";
+
             var projects = await _projectRepository.GetAllAsync(
-                orderByDescending: false,
-                sortBy: null, 
+                orderByDescending: orderByDescending,
+                sortBy: p => p.EndDate, // 👈 Sortera efter EndDate
                 filterBy: null,
                 includes: new Expression<Func<ProjectEntity, object>>[]
                 {
-                    p => p.Client,
-                    p => p.ProjectOwner
+            p => p.Client,
+            p => p.ProjectOwner
                 });
 
             var result = projects.Select(p => new ProjectDto
@@ -74,13 +76,13 @@ namespace Infrastructure.Business.Services
                 EndDate = p.EndDate,
                 Budget = p.Budget,
 
-                ClientId = p.ClientId, // 👈 Lägger till detta
+                ClientId = p.ClientId,
                 ClientName = p.Client?.ClientName ?? "Unknown",
 
-                ProjectOwnerId = p.ProjectOwnerId, // 👈 Lägger till detta
+                ProjectOwnerId = p.ProjectOwnerId,
                 ProjectOwnerName = p.ProjectOwner != null
-                ? $"{p.ProjectOwner.Firstname} {p.ProjectOwner.Lastname}"
-                : "Unknown"
+                    ? $"{p.ProjectOwner.Firstname} {p.ProjectOwner.Lastname}"
+                    : "Unknown"
             });
 
             return result;
