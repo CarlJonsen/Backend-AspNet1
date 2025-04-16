@@ -21,7 +21,6 @@ namespace Infrastructure.Business.Services
 
         public async Task<bool> CreateClientAsync(CreateClientRequest request)
         {
-            // Kolla om klient med samma namn+mail redan finns?
             var exists = await _clientRepository.ExistsAsync(c =>
                 c.ClientName == request.ClientName && c.Email == request.Email);
 

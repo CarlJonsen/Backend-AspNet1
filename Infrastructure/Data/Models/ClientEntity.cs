@@ -15,7 +15,7 @@ namespace Infrastructure.Data.Models
         public string BillingAddress { get; set; }
         public string BillingReference { get; set; }
 
-        // Relation till City
+        // Relation till City som ska användas i framtiden
         public int? CityId { get; set; }
         public CityEntity? City { get; set; }
 

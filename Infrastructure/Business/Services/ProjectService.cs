@@ -58,7 +58,7 @@ namespace Infrastructure.Business.Services
 
             var projects = await _projectRepository.GetAllAsync(
                 orderByDescending: orderByDescending,
-                sortBy: p => p.EndDate, // 👈 Sortera efter EndDate
+                sortBy: p => p.EndDate,
                 filterBy: null,
                 includes: new Expression<Func<ProjectEntity, object>>[]
                 {
@@ -103,7 +103,7 @@ namespace Infrastructure.Business.Services
             project.ClientId = request.ClientId;
             project.ProjectOwnerId = request.ProjectOwnerId;
 
-            return await _projectRepository.UpdateAsync(project); // 👈 returnerar true/false
+            return await _projectRepository.UpdateAsync(project);
         }
 
         public async Task<bool> DeleteProjectAsync(int id)
