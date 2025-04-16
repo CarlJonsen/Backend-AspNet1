@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "My API",
         Version = "v1",
-        Description = "CRM/Projektplattform - DENNA SKA BORT INNAN PRODUKTION apikey: A9f4XZ!73sKD91hf@ksl02zMB_82hdkZ"
+        Description = "För att använda swagger så behöves först en 'secret api key', sen måste du logga in för att få JWT Token"
     });
 
     options.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
